@@ -22,3 +22,11 @@ flutter run --release # Inicia o projeto em modo realease (Modo compartilhamento
 ```
 
 > adicionar /build mo `.gitignore`
+
+```sh
+flutter clean # Limpa arquivos desnecessarios para zip
+```
+
+```sh
+flutter pub get # Atualiza os pacotes do flutter
+```
