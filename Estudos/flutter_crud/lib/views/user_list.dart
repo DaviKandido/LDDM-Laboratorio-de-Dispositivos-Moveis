@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_crud/components/user_title.dart';
-import 'package:flutter_crud/data/dummy_users.dart';
+import 'package:flutter_crud/models/user.dart';
+import 'package:flutter_crud/provider/users.dart';
+import 'package:flutter_crud/routes/app_routes.dart';
+import 'package:provider/provider.dart';
 
 class UserList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final users = {...DUMMY_USERS};
+    final Users users = Provider.of(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -15,14 +18,15 @@ class UserList extends StatelessWidget {
           IconButton(
             icon: Icon(Icons.add),
             color: Colors.black,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).pushNamed(AppRoutes.User_FORM);
+            },
           ),
         ],
       ),
       body: ListView.builder(
-        itemCount: DUMMY_USERS.length,
-        itemBuilder: (context, index) =>
-            UserTitle(users.values.elementAt(index)),
+        itemCount: users.count,
+        itemBuilder: (context, index) => UserTitle(users.byIndex(index)),
       ),
     );
   }
